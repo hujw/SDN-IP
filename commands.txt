@@ -1,0 +1,39 @@
+[ONOS]
+apps --active -s
+app activate org.onosproject.sdnip org.onosproject.proxyarp (1.11以後版本不需要 load 這個)
+
+hosts
+routes
+flows |grep 10.114.10
+
+
+[STC Reset]
+stc teardown
+stc setup (onos 爛了)
+啟動 sdn-ip
+onos-netcfg $OCI network-cfg.json
+onos
+
+[CELL]
+vim onos/tools/test/cells/nchc
+vicell
+
+[buck]
+buck build onos --no-cache
+
+[tmux]
+Ctrl-F + c (create)
+Ctrl-F + K (delete)
+
+[SDN-IP]
+routes
+bgp-neighbor
+
+
+[pica8]
+ovs-vsctl -- set bridge pureL2 protocols=OpenFlow13
+
+[Quagga]
+telnet 0 bgpd
+sh ip bgp summary
+sh bgp neighbor

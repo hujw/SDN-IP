@@ -1,0 +1,58 @@
+{
+    "ports" : {
+        "of:7bb3486e73020218/3" : {
+            "interfaces" : [
+                {
+                    "name" : "nctu-sdn-ip-quagga2",
+                    "ips" : ["10.115.1.8/24"],
+                    "mac" : "fa:16:3e:c4:0a:d4"
+                }
+            ]
+        },
+        "of:7bb3486e73020218/1" : {
+            "interfaces" : [
+                {
+                    "name" : "nchc-TestNet-quagga",
+                    "ips" : ["10.73.95.8/24"],
+                    "mac" : "fa:16:3e:c4:0a:d4"
+                }
+            ]
+        },
+        "of:7bb3486e73020218/4" : {
+            "interfaces" : [
+                {
+                    "name" : "nchc-HC-quagga",
+                    "ips" : ["10.140.110.42/27"],
+                    "mac" : "fa:16:3e:c4:0a:d4"
+                }
+            ]
+        }
+    },
+    "devices" : {
+        "of:7bb3486e73020218" : {
+            "basic" : {
+                "name" : "NCHC-OF"
+            }
+        }
+    },
+    "apps" : {
+        "org.onosproject.router" : {
+            "bgp" : {
+                "bgpSpeakers" : [
+                    {
+                        "name" : "nchc-quagga",
+                        "connectPoint" : "of:7bb3486e73020218/2",
+                        "peers" : [
+                            "10.115.1.5",
+                            "10.115.1.6",
+                            "10.115.1.7",
+                            "10.115.2.9",
+                            "10.140.110.41",
+                            "10.73.95.36"
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}
