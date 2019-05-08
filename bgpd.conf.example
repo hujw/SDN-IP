@@ -4,8 +4,9 @@
 ! 1. hostname and password
 ! 2. router bgp 12345 <-- replace to your AS number
 ! 3. router-id 1.2.3.4 <-- replace to your id (we use the host's ip addr.)
-! 4. neighbor 10.73.75.1 remote-as 65212 <-- replace to your peer's ip addr. and AS number
-! 5. neighbor 5.5.5.5 remote-as 12345 <-- replace 5.5.5.5 and 12345 to your ONOS server ip and AS number respectively
+! 4. network 10.10.10.0/24  <-- replace to the network you want to exchange
+! 5. neighbor 10.73.75.1 remote-as 65212 <-- replace to your peer's ip addr. and AS number
+! 6. neighbor 5.5.5.5 remote-as 12345 <-- replace 5.5.5.5 and 12345 to your ONOS server ip and AS number respectively
 !
 hostname bgpd
 password bgpd
@@ -13,6 +14,7 @@ password bgpd
 !
 router bgp 12345
   bgp router-id 1.2.3.4
+  network 10.10.10.0/24
   timers bgp 3 10
   neighbor 10.73.75.1 remote-as 65212
   neighbor 10.73.75.1 soft-reconfiguration inbound
