@@ -71,3 +71,14 @@ In VPN client
 * ```sudo apt-get install quagga```
 * Refer to the files ([daemons](https://github.com/hujw/SDN-IP/blob/master/daemons), [bgpd.conf](https://github.com/hujw/SDN-IP/blob/master/network-cfg.json), and [zebra.conf](https://github.com/hujw/SDN-IP/blob/master/zebra.conf.example)) and replace to your information. Then, execute ```sudo /etc/init.d/quagga restart``` to start the quagga service.
 * Use ```route -n``` to check whether the system receives the exchanged routes from your peers.
+3. Docker and OvS
+* Install OvS in Ubuntu 16.04
+```
+sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils 
+sudo apt-get install openvswitch-switch
+```
+* Configure Docker container to attach the port of OvS (Refer to: https://medium.com/@joatmon08/making-it-easier-docker-containers-on-open-vswitch-4ed757619af9)
+```
+sudo docker run -d --name=onos --net=none onosproject/onos
+sudo ovs-docker add-port br0 eth0 onos --ipaddress=10.73.75.22/24 --gateway=10.73.75.2
+```
