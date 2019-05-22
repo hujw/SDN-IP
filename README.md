@@ -67,10 +67,12 @@ In VPN client
 * ```sudo apt-get install openvpn```
 * Go to the directory contains the *.ovpn file (ex: my.ovpn) and execute ```sudo openvpn my.ovpn```.
 * Use ```ifconfig``` to check whether the interface (ex: tap0) contains a private ip address assigned by OpenVPN server. 
+
 2. Install Quagga
 * ```sudo apt-get install quagga```
 * Refer to the files ([daemons](https://github.com/hujw/SDN-IP/blob/master/daemons), [bgpd.conf](https://github.com/hujw/SDN-IP/blob/master/network-cfg.json), and [zebra.conf](https://github.com/hujw/SDN-IP/blob/master/zebra.conf.example)) and replace to your information. Then, execute ```sudo /etc/init.d/quagga restart``` to start the quagga service.
 * Use ```route -n``` to check whether the system receives the exchanged routes from your peers.
+
 3. Docker and OvS
 * Install OvS in Ubuntu 16.04
 ```
