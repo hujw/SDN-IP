@@ -93,9 +93,9 @@ $ sudo ifconfig br0 10.73.75.x netmask 255.255.255.0
 4. Install Quagga (Docker)
 ```
 $ sudo docker pull cumulusnetworks/quagga
-$ docker run -t -d --net=none --privileged --name Quagga cumulusnetworks/quagga:latest
+$ docker run -t -d --privileged --name Quagga cumulusnetworks/quagga:latest
 ```
-Add port (docker quagga) into OvS
+Add port (docker quagga) and assign IP (for VPN) into OvS
 ```
 $ sudo ovs-docker add-port br0 tap0 Quagga --ipaddress=10.73.75.55/24
 ```
@@ -130,7 +130,7 @@ $ sudo docker cp zebra.conf Quagga:/etc/quagga/zebra.conf
 $ docker exec -it Quagga /bin/bash
 root@c42638db5085:/# /usr/lib/quagga/quagga restart
 ```
-Check the bgp routes
+Check whether the bgp routes are exchanged
 ```
 $ route -n
 Kernel IP routing table
@@ -139,7 +139,10 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 30.10.10.0      10.73.75.55     255.255.255.0   UG    0      0        0 br0
 ```
 
-5. Install ONOS (Docker)
+5. Install and configure ONOS (Docker)
 ```
 $ sudo docker run -d --name=onos --net=none onosproject/onos
+$ ssh -p 8101 karaf@172.17.0.2 # password is karaf
+onos> app activate org.onosproject.openflow
+onos> app activate org.onosproject.sdnip
 ```
