@@ -147,3 +147,15 @@ onos> app activate org.onosproject.openflow
 onos> app activate org.onosproject.sdnip
 $ onos-netcfg $OCI network-cfg.json
 ```
+
+6. Network Architecture
+```
++--------+            +--------+
+|  ONOS  |            | Quagga |      +------+          +----------+
+|  Veth  |            |  Veth  |      | tap0 +----------+VPN tunnel|
++---+----+            +--+--+--+      +---+--+          +----------+
+    |                    |  |             |
+    |    +-----------+   |  |      +------+-----+
+    +----+  docker0  +---+  +------+Open vSwitch|
+         +-----------+             +------------+
+```
