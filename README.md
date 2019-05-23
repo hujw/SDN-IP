@@ -145,4 +145,5 @@ $ sudo docker run -d --name=onos --net=none onosproject/onos
 $ ssh -p 8101 karaf@172.17.0.2 # password is karaf
 onos> app activate org.onosproject.openflow
 onos> app activate org.onosproject.sdnip
+$ onos-netcfg $OCI network-cfg.json
 ```
